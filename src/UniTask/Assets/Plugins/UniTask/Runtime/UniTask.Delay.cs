@@ -74,7 +74,14 @@ namespace Cysharp.Threading.Tasks
             return new UniTask(NextFramePromise.Create(timing, cancellationToken, out var token), token);
         }
 
-
+        /// <summary>
+        /// Similar as UniTask.Yield but guaranteed run on next frame.
+        /// </summary>
+        public static UniTask NextFrame(CancellationToken cancellationToken = default)
+        {
+            return NextFrame(PlayerLoopTiming.Update, cancellationToken);
+        }
+        
         /// <summary>
         /// Same as UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate).
         /// </summary>
